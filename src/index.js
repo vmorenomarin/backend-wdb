@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true })); // necesaria para poder recibir
 
 app.use(express.json()); // Necesaria para la conversión de datos en json y leerlos adecuadamente.
 app.use(cors({ origin: "*" })); // Permite las conexiones desde cualquier cliente.
-
+app.use("/", require("./routes/user.route"));
 app.listen(app.get("Port"), () => {
   console.log(`Server running in ${app.get("Port")} port.`);
 });
