@@ -4,7 +4,9 @@
   "description": "Creación de un back end básico con una base de datos no relacioonal usando MongoDB.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
   },
   "author": "Víctor moreno Marín",
   "license": "ISC",

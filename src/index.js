@@ -1,6 +1,7 @@
-const express = requires("express");
-const morgan = requires("morgan");
-const cors = requires("cors");
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+require("./database");
 
 const app = express();
 
@@ -14,5 +15,5 @@ app.use(express.json()); // Necesaria para la conversión de datos en json y lee
 app.use(cors({ origin: "*" })); // Permite las conexiones desde cualquier cliente.
 
 app.listen(app.get("Port"), () => {
-  console.log(`Server running in ${app.get("Port")}`);
+  console.log(`Server running in ${app.get("Port")} port.`);
 });
