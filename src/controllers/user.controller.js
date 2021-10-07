@@ -72,9 +72,27 @@ userCtrl.update = async (req, res) => {
 userCtrl.add = async (req, res) => {
   try {
     const { name, lastname, email, salary } = req.body;
-    const verify = await userModel.findOne({ email });
-    if (verify) {
+    if (!name || name.trim() === "") {
       return res.json({
+        ok: false,
+        message: "Name field is required, cannot be empty.",
+      });
+    }
+    if (!lastname || lastname.trim() === "") {
+      return res.json({
+        ok: false,
+        message: "Lstname field is required, cannot be empty.",
+      });
+    }
+    if (!email || email.trim() === "") {
+      return res.json({
+        ok: false,
+        message: "E-mail field is required, cannot be empty.",
+      });
+    }
+    const verify = E - (await userModel.findOne({ email }));
+    if (verify) {
+      return res.status(400).json({
         ok: false,
         message: "Email address already exists relates to other user.",
       });
