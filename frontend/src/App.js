@@ -1,8 +1,13 @@
+import axios from "axios";
+import React from "react";
+import { Crud } from "./components/Crud";
 
-function App() {
-  return <div className="container">
-    <div class="text-danger">Hola Mundo cruel y despiadado</div>
-  </div>;
-}
+export const App = () => {
+  return (
+    <div>
+      <Crud />
+    </div>
+  );
+};
 
 export default App;
