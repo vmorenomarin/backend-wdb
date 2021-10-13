@@ -60,7 +60,7 @@ export const Crud = () => {
           console.log(id);
           const updatedUser = { name, lastname, email, salary };
           const { data } = await axios.put(
-            "http://localhost:4000/userupdate/" + id,cd
+            "http://localhost:4000/userupdate/" + id,
             updatedUser
           );
           clearData();
