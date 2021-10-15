@@ -12,6 +12,7 @@ export const Crud = () => {
   const [email, setEmail] = useState("");
   const [salary, setSalary] = useState(0);
   const [edit, setEdit] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     getData();
@@ -78,6 +79,18 @@ export const Crud = () => {
         return alert(error.message);
       }
       console.log("Error in saveUser", error.message);
+    }
+  };
+
+  const getUser = async (id) => {
+    try {
+      const { data } = await axios.get("http://localhost:4000/userid/" + id);
+      setUser(data.user);
+    } catch (error) {
+      if (!error.response.data.ok) {
+        return alert(error.message);
+      }
+      console.log("Error in getUser", error.message);
     }
   };
 
@@ -192,7 +205,7 @@ export const Crud = () => {
             </thead>
             <tbody>
               {users.map((user, i) => (
-                <tr key={user._id}>
+                <tr key={user._id} onClick={() => getUser(user._id)}>
                   <td>{i + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.lastname}</td>
@@ -214,6 +227,30 @@ export const Crud = () => {
           </table>
         </div>
         {/* Table end */}
+
+        {/* User card begin */}
+
+       <div className={Object.entries(user).length !== 0? "d-flex justify-content-center mb-3": "d-none"}>
+          <div className="col-12 col-md-8">
+            <div className="card">
+              <h3 className="card-header">
+                {user.name} {user.lastname}
+              </h3>
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    <i className="bi bi-envelope-fill me-2"></i>
+                    {user.email}
+                  </li>
+                  <li className="list-group-item">
+                    <i className="bi bi-cash-coin me-2"></i>$ {user.salary}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Card user ends */}
       </div>
     </div>
   );

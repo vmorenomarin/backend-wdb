@@ -23,7 +23,7 @@ userCtrl.listid = async (req, res) => {
         message: "Id number not finded.",
       });
     }
-    res.json({ ok: true, message: user });
+    res.json({ ok: true, user });
   } catch (error) {
     res.status(500).json({
       ok: false,
